@@ -1,0 +1,10 @@
+.iref-queue-btn {
+    background-color: #cd00cd !important;
+    color: white !important;
+}
+
+.iref-auto-register {
+    div[data-popper-placement="top"] {
+        display: none !important;
+    }
+}

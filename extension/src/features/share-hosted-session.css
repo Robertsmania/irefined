@@ -1,0 +1,7 @@
+.iref-hosted-buttons button {
+    height: 31px;
+}
+
+.iref-hosted-buttons button:first-of-type {
+    margin-left: 6px;
+}

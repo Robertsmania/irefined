@@ -1,0 +1,24 @@
+{
+  "name": "extension",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "http-server dist --cors"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "vite": "^6.1.0",
+    "vite-plugin-static-copy": "^2.2.0"
+  },
+  "dependencies": {
+    "dom-chef": "^5.1.1",
+    "react-switch": "^7.1.0",
+    "select-dom": "^9.3.0",
+    "socket.io-client": "^4.8.1",
+    "uuid": "^11.1.0"
+  }
+}

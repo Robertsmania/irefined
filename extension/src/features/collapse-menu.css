@@ -1,0 +1,17 @@
+.iref-collapse-menu {
+
+    #racing-sidebar {
+
+        width: 67px;
+
+        button[aria-label="Test Drive"] {
+            margin-inline: 0;
+        }
+
+        .chakra-text {
+            display: none;
+        }
+
+    }
+
+}

@@ -1,0 +1,5 @@
+.iref-no-toasts {
+    #chakra-toast-manager-top .chakra-toast {
+        display: none !important;
+    }
+}

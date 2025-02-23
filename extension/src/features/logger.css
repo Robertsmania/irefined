@@ -1,0 +1,25 @@
+.iref-logger {
+    #iref-log {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 1);
+        border-top-left-radius: 5px;
+        color: #fff;
+        padding: 0px 10px;
+        z-index: 9000;
+        max-height: 29px;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+
+        span {
+            color: #8f8f8f;
+            font-family: monospace;
+        }
+    }
+}
+
+.iref-settings-panel-open.iref-logger #iref-log {
+    max-height: 200px;
+    overflow-y: auto;
+}
