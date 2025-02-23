@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": "index.js",
   "scripts": {
-    "start": "node ."
+    "patch": "node .",
+    "build": "pkg --debug . --o irefined-installer.exe"
+  },
+  "pkg": {
+    "assets": ["patches/**/*"],
+    "targets": [ "node20-win-x64" ]
   },
   "author": "Jason Murray",
   "license": "ISC",
   "dependencies": {
+    "@yao-pkg/pkg": "^6.3.1",
     "patch-asar": "^0.5.5"
   }
 }

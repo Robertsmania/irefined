@@ -21,7 +21,7 @@ if (!fs.existsSync(irPath + '.irefined')) {
 
 	console.log("Installing iRefined...")
 
-	fs.cpSync(path.join(__dirname, "iref"), path.join(irPath, "iref"), {recursive: true});
+	fs.cpSync(path.join(process.cwd(), "iref"), path.join(irPath, "iref"), {recursive: true});
 
 	patchAsar(inputAsar, patchFolder).then(() => {
 		console.log("Success!")
