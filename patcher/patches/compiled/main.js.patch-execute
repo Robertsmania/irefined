@@ -1,0 +1,6 @@
+const mainPatcher = (file) => {
+    let patched = file.replace("p.app.on(\"ready\",(()=>{", "p.app.on(\"ready\",(()=>{de.session.defaultSession.loadExtension(a().dirname(a().dirname(__dirname)) + '\\\\iref\\\\',{allowFileAccess:!0}),");
+    return patched;
+}
+
+module.exports = mainPatcher;
