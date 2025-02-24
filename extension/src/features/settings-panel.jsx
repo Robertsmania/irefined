@@ -17,6 +17,10 @@ async function initSettingsPanel(activate = true) {
         $('#iref-log').scrollTop = $('#iref-log').scrollHeight;
     };
 
+    const handleReload = e => {
+        location.reload();
+    };
+
     let settings = JSON.parse(localStorage.getItem('iref_settings')) || {};
 
     const handleChange = (e) => {
@@ -133,6 +137,7 @@ async function initSettingsPanel(activate = true) {
                 <div>
                     <div class="pull-xs-left">
                     <a id="default-close-modal-btn-71327f90-c5eb-2239-da82-fd2d60e5ea02" class="btn btn-md btn-secondary" data-testid="button-close-modal" onClick={handleClose}><i class="icon-cancel"></i> Close</a>
+                    <a id="reload-ui" class="btn btn-md btn-secondary" onClick={handleReload}>Reload UI</a>
                     </div>
                     <div class="pull-xs-right">
                         <span class="m-l-h">
