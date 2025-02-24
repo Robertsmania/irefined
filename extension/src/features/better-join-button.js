@@ -53,7 +53,7 @@ async function init(activate = true) {
         }
 
         //joinBtnEl.innerHTML = joinBtnEl.innerHTML + " " + label;
-        joinBtnEl.innerHTML = (label2 ? "✨ Join " : "") + label1 + label2;
+        joinBtnEl.innerHTML = (label2 ? "🏁 Join " : "") + label1 + label2;
 
     }, 300);
 }

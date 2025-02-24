@@ -22,7 +22,7 @@ async function p(l = !0) {
     t.classList.add("iref-seen");
     const e = u(t);
     let r = "", s = "";
-    e.registrationStatus.user_role !== 0 ? o[e.registrationStatus.user_role] !== void 0 && (r = o[e.registrationStatus.user_role]) : (e.registrationStatus.event_type === 5 ? s = " Race" : s = " Practice", e.registrationStatus.will_be_scored ? r = "Official" : r = "Unofficial"), t.innerHTML = (s ? "✨ Join " : "") + r + s;
+    e.registrationStatus.user_role !== 0 ? o[e.registrationStatus.user_role] !== void 0 && (r = o[e.registrationStatus.user_role]) : (e.registrationStatus.event_type === 5 ? s = " Race" : s = " Practice", e.registrationStatus.will_be_scored ? r = "Official" : r = "Unofficial"), t.innerHTML = (s ? "🏁 Join " : "") + r + s;
   }, 300);
 }
 const a = c(import.meta.url), d = "iref-" + a;
