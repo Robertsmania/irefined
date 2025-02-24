@@ -10,7 +10,7 @@ async function f(a = !0) {
     return;
   let r = JSON.parse(localStorage.getItem("iref_settings"))["auto-join-type"] || "race";
   const e = l(i(o));
-  e.registrationStatus.subsession_id !== t ? (t = e.registrationStatus.subsession_id, r !== "race" || r === "race" && e.registrationStatus.will_be_scored ? (s(`🏁 Auto joined session: ${t}`), i(o).click()) : s(`⛔ Not joining non-race session: ${t}`)) : s(`⛔ Already processed auto join for: ${t}`);
+  e.registrationStatus.subsession_id !== t ? (t = e.registrationStatus.subsession_id, r !== "race" || r === "race" && e.registrationStatus.event_type === 5 && e.registrationStatus.will_be_scored ? (s(`🏁 Auto joined session: ${t}`), i(o).click()) : s(`⛔ Not joining non-race session: ${t}`)) : s(`⛔ Already processed auto join for: ${t}`);
 }
 const n = c(import.meta.url), m = "iref-" + n;
 u.add(n, !0, o, m, f);

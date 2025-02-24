@@ -20,7 +20,7 @@ async function init(activate = true) {
 
     if (joinProps.registrationStatus.subsession_id !== lastJoined) {
         lastJoined = joinProps.registrationStatus.subsession_id;
-        if (type !== "race" || (type === "race" && joinProps.registrationStatus.will_be_scored)) {
+        if (type !== "race" || (type === "race" && joinProps.registrationStatus.event_type === 5  && joinProps.registrationStatus.will_be_scored)) {
             log(`🏁 Auto joined session: ${lastJoined}`);
             $(selector).click();
         } else {
