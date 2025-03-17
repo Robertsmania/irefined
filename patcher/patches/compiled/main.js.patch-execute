@@ -1,5 +1,5 @@
 const mainPatcher = (file) => {
-    let patched = file.replace("p.app.on(\"ready\",(()=>{", "p.app.on(\"ready\",(()=>{he.session.defaultSession.loadExtension(i().dirname(i().dirname(__dirname)) + '\\\\iref\\\\',{allowFileAccess:!0}),");
+    let patched = file.replace("p.app.on(\"ready\",(()=>{", "p.app.on(\"ready\",(()=>{Ae.session.defaultSession.loadExtension(n().dirname(n().dirname(__dirname)) + '\\\\iref\\\\',{allowFileAccess:!0}),");
     return patched;
 }
 
