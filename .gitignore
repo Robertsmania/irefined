@@ -3,3 +3,5 @@ node_modules
 
 *.asar
 *.dev
+build
+*.spec
