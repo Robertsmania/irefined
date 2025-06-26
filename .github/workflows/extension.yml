@@ -3,7 +3,8 @@ name: extension
 on: push
 
 permissions:
-  contents: write
+  id-token: write
+  pages: write
 
 concurrency: extension
 

@@ -3,8 +3,7 @@ name: launcher
 on: push
 
 permissions:
-  id-token: write
-  pages: write
+  contents: write
 
 concurrency: launcher
 
