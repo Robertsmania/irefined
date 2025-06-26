@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='irefined.exe',
+    name='iRefined.exe',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
