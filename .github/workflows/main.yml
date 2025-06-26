@@ -26,8 +26,9 @@ jobs:
       - name: Release launcher
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            patcher/dist/windows/irefined.exe
+          files: patcher/dist/windows/irefined.exe
+          name: iRefined Launcher v${{ github.ref_name }}
+          body_path: patcher/CHANGELOG.md
 
   build_extension:
     runs-on: ubuntu-latest
