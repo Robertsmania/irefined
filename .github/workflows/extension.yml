@@ -9,7 +9,7 @@ concurrency: extension
 
 jobs:
   build_extension:
-    if: ${{ ! github.ref_type == 'tag' }}
+    if: github.ref_type != 'tag'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
