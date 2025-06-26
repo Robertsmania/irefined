@@ -18,11 +18,11 @@ jobs:
       - name: Package launcher
         uses: JackMcKew/pyinstaller-action-windows@main
         with:
-          path: patcher
+          path: launcher
 
       - name: Release launcher
         uses: softprops/action-gh-release@v2
         with:
-          files: patcher/dist/windows/iRefined.exe
+          files: launcher/dist/windows/iRefined.exe
           name: iRefined Launcher v${{ github.ref_name }}
-          body_path: patcher/CHANGELOG.md
+          body_path: launcher/CHANGELOG.md
