@@ -1,0 +1,51 @@
+name: main
+
+on: push
+
+concurrency:
+  group: "release"
+  cancel-in-progress: true
+
+jobs:
+  build_launcher:
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Package launcher
+        uses: JackMcKew/pyinstaller-action-windows@main
+        with:
+          path: patcher
+
+      - name: Release launcher
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            patcher/dist/windows/irefined.exe
+
+  build_extension:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+
+    - name: Install dependencies
+      uses: bahmutov/npm-install@v1
+
+    - name: Build project
+      run: npm run build
+
+    - name: Setup pages
+      uses: actions/configure-pages@v4
+
+    - name: Release extension
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: "extension/dist"
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
