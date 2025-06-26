@@ -26,26 +26,27 @@ jobs:
             patcher/dist/windows/irefined.exe
 
   build_extension:
-    - name: Checkout repo
-      uses: actions/checkout@v4
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-    - name: Setup Node
-      uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
 
-    - name: Install dependencies
-      uses: bahmutov/npm-install@v1
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
 
-    - name: Build project
-      run: npm run build
+      - name: Build project
+        run: npm run build
 
-    - name: Setup pages
-      uses: actions/configure-pages@v4
+      - name: Setup pages
+        uses: actions/configure-pages@v4
 
-    - name: Release extension
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: "extension/dist"
+      - name: Release extension
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "extension/dist"
 
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
