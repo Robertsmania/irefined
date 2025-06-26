@@ -36,9 +36,12 @@ jobs:
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
+        with:
+          working-directory: extension
 
       - name: Build project
         run: npm run build
+        working-directory: extension
 
       - name: Setup pages
         uses: actions/configure-pages@v4
