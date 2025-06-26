@@ -5,6 +5,7 @@ on: push
 permissions:
   id-token: write
   pages: write
+  contents: write
 
 concurrency:
   group: "release"
@@ -29,7 +30,6 @@ jobs:
           files: patcher/dist/windows/irefined.exe
           name: iRefined Launcher v${{ github.ref_name }}
           body_path: patcher/CHANGELOG.md
-          token: ${{ secrets.GITHUB_TOKEN }}
 
   build_extension:
     runs-on: ubuntu-latest
