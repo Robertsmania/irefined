@@ -1,1 +1,0 @@
-{"version":3,"file":"feature-helpers.js","sources":["../../src/helpers/feature-helpers.js"],"sourcesContent":["export const getFeatureID = (url) => url.split('/').pop().split('.')[0];\r\n"],"names":["getFeatureID","url"],"mappings":"AAAY,MAACA,IAAe,CAACC,MAAQA,EAAI,MAAM,GAAG,EAAE,MAAM,MAAM,GAAG,EAAE,CAAC;"}

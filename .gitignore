@@ -1,6 +1,7 @@
 node_modules
-!extension/dist/node_modules
+dist
+build
 
 *.asar
 *.dev
-build
+*.log
