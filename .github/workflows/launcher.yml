@@ -1,0 +1,29 @@
+name: launcher
+
+on: push
+
+permissions:
+  id-token: write
+  pages: write
+
+concurrency: launcher
+
+jobs:
+  build_launcher:
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Package launcher
+        uses: JackMcKew/pyinstaller-action-windows@main
+        with:
+          path: patcher
+
+      - name: Release launcher
+        uses: softprops/action-gh-release@v2
+        with:
+          files: patcher/dist/windows/irefined.exe
+          name: iRefined Launcher v${{ github.ref_name }}
+          body_path: patcher/CHANGELOG.md
