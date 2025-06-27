@@ -1,0 +1,12 @@
+[project]
+name = "iRefined"
+version = "0.1"
+description = "iRefined Launcher"
+
+[tool.cxfreeze]
+executables = [
+    { script = "main.py", base = "gui", target_name = "iRefined.exe" },
+]
+
+[tool.cxfreeze.build_exe]
+include_files = ["bootstrap.js"]

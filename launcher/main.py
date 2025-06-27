@@ -1,15 +1,25 @@
-from electron_inject import inject
+import sys
+from electron_inject import inject # type: ignore
 from os import path, environ
-bundle_dir = path.abspath(path.dirname(__file__))
-path_to_bootstrap = path.join(bundle_dir, 'bootstrap.js')
+
 program_files_x86 = environ.get("ProgramFiles(x86)")
-    
+
+def find_data_file(filename):
+    if getattr(sys, "frozen", False):
+        # The application is frozen
+        datadir = sys.prefix  # datadir = os.path.dirname(sys.executable)
+    else:
+        # The application is not frozen
+        # Change this bit to match where you store your data files:
+        datadir = path.dirname(__file__)
+    return path.join(datadir, filename)
+
 inject(
     f"\"{program_files_x86}\\iRacing\\ui\\iRacingUI.exe\" --remote-allow-origins=*",
     devtools=False,
     browser=False,
     timeout=None,
     scripts=[
-        path_to_bootstrap,
+        find_data_file('bootstrap.js'),
     ],
 )
