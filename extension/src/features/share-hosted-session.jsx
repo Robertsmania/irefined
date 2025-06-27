@@ -1,6 +1,6 @@
 import { getFeatureID } from '../helpers/feature-helpers.js';
 import features from '../feature-manager.js';
-import { findState } from '../helpers/react-resolver.js';
+import { findReact } from '../helpers/react-resolver.js';
 import './share-hosted-session.css';
 import React from 'dom-chef';
 import { $ } from 'select-dom';
@@ -13,7 +13,7 @@ async function initHostedSession(activate = true) {
         return;
     }
 
-    const modalState = findState($(selector), 1);
+    const modalState = findReact($(selector), 1, "state");
 
     const getJsonUpload = () =>
         new Promise(resolve => {
