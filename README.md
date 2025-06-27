@@ -1,3 +1,3 @@
-## Build Patcher
+## Build Launcher
 
-`pipenv run pyinstaller main.py --onefile --add-data="bootstrap.js:." --noconsole --distpath "..\extension\dist\" -n irefined.exe`
+`pipenv run cxfreeze build --target-dir=dist`
