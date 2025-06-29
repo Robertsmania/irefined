@@ -9,8 +9,8 @@ let persistInterval = 0;
 
 const userRoles = {
   0: "Race",
-  2: "👀 Spectate",
-  4: "📣 Spot",
+  2: "Spectate",
+  4: "Spot",
 };
 
 async function init(activate = true) {
@@ -39,20 +39,20 @@ async function init(activate = true) {
       }
     } else {
       if (joinProps.registrationStatus.event_type === 5) {
-        label2 = " Race";
+        label1 = "Race";
       } else {
-        label2 = " Practice";
+        label1 = "Practice";
       }
 
       if (joinProps.registrationStatus.will_be_scored) {
-        label1 = "Official";
+        label2 = "";
       } else {
-        label1 = "Unofficial";
+        label2 = " (Unscored)";
       }
     }
 
     //joinBtnEl.innerHTML = joinBtnEl.innerHTML + " " + label;
-    joinBtnEl.innerHTML = (label2 ? "🏁 Join " : "") + label1 + label2;
+    joinBtnEl.innerHTML = label1 == "Race" ? label1 + label2 : label1;
   }, 300);
 }
 

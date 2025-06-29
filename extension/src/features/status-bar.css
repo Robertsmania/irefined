@@ -1,0 +1,24 @@
+.iref-status-bar {
+  .css-3klkag,
+  .css-5p3npk {
+    height: calc(100vh - 30px);
+  }
+
+  #friends-wrapper {
+    margin-bottom: 22px;
+  }
+}
+
+#iref-bar {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  border-top: 1px solid #687aff;
+  background: #000;
+
+  > div {
+    padding: 4px 6px;
+    background: #12121b;
+    margin-right: 4px;
+  }
+}
