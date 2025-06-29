@@ -12,15 +12,18 @@ let persistInterval = 0;
 let watchQueue = [];
 
 function checkSession(session, queueItem) {
+  let isoTime =
+    new Date(queueItem.start_time).toISOString().split(".")[0] + "Z";
+
   if (session.season_id === queueItem.season_id) {
     if (
       session.season_id === queueItem.season_id &&
       session.event_type === 5 &&
-      session.start_time === queueItem.start_time &&
+      session.start_time === isoTime &&
       session.session_id > 0
     ) {
       log(
-        `📝 Race session for series ${queueItem.season_id}, start ${queueItem.start_time} found in data.`
+        `📝 Race session for series ${queueItem.season_id}, start ${isoTime} found in data.`
       );
       watchQueue = watchQueue.filter(
         (item) => item.start_time !== queueItem.start_time
@@ -60,10 +63,30 @@ ws.callbacks.push(wsCallback);
 
 function addToQueue(e) {
   const sessionProps = findProps(e.target);
-
   const timestamp = sessionProps.session.start_time;
 
-  if (!sessionProps.preselectedCarId) {
+  let selectedCar = JSON.parse(
+    localStorage.getItem(`selected_car_season_${sessionProps.contentId}`)
+  );
+
+  if (!selectedCar && !$(".alice-carousel")) {
+    const singleCarEl = $(".css-m35ghn > .css-0");
+
+    const reactPropsKey = Object.keys(singleCarEl).find((key) =>
+      key.startsWith("__reactProps")
+    );
+
+    if (reactPropsKey) {
+      selectedCar = {
+        car_id: singleCarEl[reactPropsKey].children.props.cars[0].car_id,
+        car_class_id: singleCarEl[reactPropsKey].children.props.carClassIds[0],
+      };
+    }
+  }
+
+  console.log(selectedCar);
+
+  if (!selectedCar) {
     log(`🚫 No car selected.`);
     e.target.innerHTML = "Select Car";
     setTimeout(() => {
@@ -82,8 +105,8 @@ function addToQueue(e) {
   watchQueue.push({
     start_time: timestamp,
     season_id: sessionProps.contentId,
-    car_id: sessionProps.preselectedCarId,
-    car_class_id: 0, // fix me
+    car_id: selectedCar.car_id,
+    car_class_id: selectedCar.car_class_id,
   });
 
   log(
