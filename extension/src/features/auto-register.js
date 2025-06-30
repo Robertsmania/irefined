@@ -9,7 +9,7 @@ import "./auto-register.css";
 const selector = 'a.active[href*="go-racing"]';
 let persistInterval = 0;
 
-let watchQueue = [];
+window.watchQueue = [];
 
 function checkSession(session, queueItem) {
   let isoTime =
@@ -84,36 +84,35 @@ function addToQueue(e) {
     }
   }
 
-  console.log(selectedCar);
-
   if (!selectedCar) {
     log(`🚫 No car selected.`);
     e.target.innerHTML = "Select Car";
+    e.target.classList.add("danger");
     setTimeout(() => {
       e.target.innerHTML = "Queue";
+      e.target.classList.remove("danger");
     }, 3000);
 
     return;
   }
 
   // check if session is already in queue
-  if (watchQueue.find((session) => session.session_start === timestamp)) {
-    log(`📝 Session ${timestamp} already in queue.`);
+  if (watchQueue.find((session) => session.start_time === timestamp)) {
+    log(`🚫 A session for timeslot ${timestamp} is already queued.`);
     return;
   }
 
   watchQueue.push({
-    start_time: timestamp,
-    season_id: sessionProps.contentId,
     car_id: selectedCar.car_id,
     car_class_id: selectedCar.car_class_id,
+    season_id: sessionProps.contentId,
+    season_name: $(".chakra-screen-billboard .chakra-heading").innerText,
+    start_time: timestamp,
   });
 
   log(
     `📝 Added session ${timestamp} for series ${sessionProps.contentId} to queue.`
   );
-
-  e.target.classList.add("disabled");
 }
 
 async function init(activate = true) {

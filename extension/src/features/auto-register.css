@@ -1,10 +1,16 @@
 .iref-queue-btn {
-    background-color: #cd00cd !important;
-    color: white !important;
+  background-color: #cd00cd !important;
+  color: white !important;
+  width: 110px !important;
+  text-align: center !important;
+}
+
+.iref-queue-btn.danger {
+  background-color: red !important;
 }
 
 .iref-auto-register {
-    div[data-popper-placement="top"] {
-        display: none !important;
-    }
+  div[data-popper-placement="top"] {
+    display: none !important;
+  }
 }

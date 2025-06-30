@@ -2,7 +2,7 @@
 import "./helpers/websockets.js";
 
 // Features
-import "./features/status-bar.js";
+import "./features/status-bar.jsx";
 import "./features/logger.js";
 import "./features/settings-panel.jsx";
 import "./features/no-sidebars.js";
