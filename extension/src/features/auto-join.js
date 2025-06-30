@@ -30,10 +30,10 @@ async function init(activate = true) {
       log(`🏁 Auto joined session: ${lastJoined}`);
       $(selector).click();
     } else {
-      log(`⛔ Not joining unofficial session: ${lastJoined}`);
+      log(`⛔ Not joining unscored session: ${lastJoined}`);
     }
   } else {
-    log(`⛔ Already processed auto join for: ${lastJoined}`);
+    log(`⛔ Already auto joined before: ${lastJoined}`);
   }
 }
 
