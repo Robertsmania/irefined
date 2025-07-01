@@ -20,23 +20,23 @@ async function init(activate = true) {
   const forfeitProps = findProps($(selector));
   forfeitCheck = forfeitProps.registrationStatus.subsession_id;
 
-  log(`🛑 Forfeit button seen, beginning ${timeout} minute countdown.`);
+  log(`🛑 Forfeit button seen, beginning ${timeout} minute countdown`);
 
   setTimeout(() => {
     const forfeitProps2 = findProps($(selector));
 
     if (!forfeitProps2) {
-      log("🛑 Forfeit button not available.");
+      log("🛑 Forfeit button not available");
       return;
     }
 
     if (forfeitProps2.simStatus.status !== "Sim Running") {
-      log("🛑 Sim not running, skipping forfeit.");
+      log("🛑 Sim not running, skipping forfeit");
       return;
     }
 
     if (forfeitCheck !== forfeitProps2.registrationStatus.subsession_id) {
-      log("🛑 Session changed, skipping forfeit.");
+      log("🛑 Session changed, skipping forfeit");
       return;
     }
 

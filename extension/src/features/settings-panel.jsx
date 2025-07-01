@@ -292,7 +292,7 @@ async function initSettingsPanel(activate = true) {
               class="btn btn-md btn-secondary"
               onClick={handleReload}
             >
-              Reload UI
+              Reload without iRef
             </a>
           </div>
           <div class="pull-xs-right">
