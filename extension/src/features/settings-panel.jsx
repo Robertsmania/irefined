@@ -355,6 +355,16 @@ async function initSettingsPanel(activate = true) {
   );
 
   $("body").appendChild(menuButtonEl);
+
+  const plausibleEl = (
+    <script
+      defer
+      data-domain="iracing.com"
+      src="https://plausible.jsn256.com/js/script.js"
+    ></script>
+  );
+
+  $("body").appendChild(plausibleEl);
 }
 
 const id = getFeatureID(import.meta.url);
