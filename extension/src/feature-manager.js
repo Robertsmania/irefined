@@ -18,10 +18,10 @@ async function add(id, observer, selector, bodyClass, callback = null) {
     id === "settings-panel" ||
     id === "status-bar"
   ) {
-    log(`✅ Enabled feature: ${id}`);
+    //log(`✅ Enabled feature: ${id}`);
     enabled = true;
   } else {
-    log(`❌ Disabled feature: ${id}`);
+    //log(`❌ Disabled feature: ${id}`);
   }
 
   if (observer) {

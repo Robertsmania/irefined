@@ -129,7 +129,7 @@ async function initSettingsPanel(activate = true) {
                       class="icon-information text-info"
                       title="Adds queue buttons to future races to automatically register to them when available. You must select a car to queue with. Will forfeit/withdraw your current session when queued session becomes available. To reset your queue restart the UI."
                     ></i>
-                    Queue registrations
+                    Queue system for future sessions
                     <input
                       type="checkbox"
                       name="auto-register"
@@ -161,7 +161,7 @@ async function initSettingsPanel(activate = true) {
                         value="race"
                         selected={settings["auto-join-type"] == "race"}
                       >
-                        race
+                        scored
                       </option>
                       <option
                         value="all"
@@ -203,7 +203,7 @@ async function initSettingsPanel(activate = true) {
                       class="icon-information text-info"
                       title="Don't show any notifications at the top of the screen."
                     ></i>
-                    No results notifications
+                    No notifications
                     <input
                       type="checkbox"
                       name="no-toasts"
@@ -216,7 +216,7 @@ async function initSettingsPanel(activate = true) {
                       class="icon-information text-info"
                       title="Close notifications at the top of the screen after a delay. Does not work with the previous option."
                     ></i>
-                    Auto close results notifications after
+                    Auto close notifications after
                     <input
                       type="number"
                       name="toast-timeout-s"
@@ -262,7 +262,7 @@ async function initSettingsPanel(activate = true) {
                       class="icon-information text-info"
                       title="Helpful to figure out why something happened."
                     ></i>
-                    Show iRefined log messages
+                    Show log messages
                     <input
                       type="checkbox"
                       name="logger"

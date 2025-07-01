@@ -27,13 +27,13 @@ async function init(activate = true) {
         joinProps.registrationStatus.event_type === 5 &&
         joinProps.registrationStatus.will_be_scored)
     ) {
-      log(`🏁 Auto joined session: ${lastJoined}`);
+      log(`🏁 Auto joining session: ${lastJoined}`);
       $(selector).click();
     } else {
       log(`⛔ Not joining unscored session: ${lastJoined}`);
     }
   } else {
-    log(`⛔ Already auto joined before: ${lastJoined}`);
+    log(`⛔ Already joined ${lastJoined} once, skipping`);
   }
 }
 

@@ -73,7 +73,7 @@ function send(event, data) {
 }
 
 function withdraw() {
-  log("🚫 Withdrawing from session if registered.");
+  log("🚫 Withdrawing from current session");
   send("data_services", {
     service: "registration",
     method: "withdraw",
@@ -81,8 +81,14 @@ function withdraw() {
   });
 }
 
-function register(car_id, car_class_id, session_id, subsession_id = null) {
-  log(`📝 Registering for session ${session_id} as driver with car ${car_id}`);
+function register(
+  session_name,
+  car_id,
+  car_class_id,
+  session_id,
+  subsession_id = null
+) {
+  log(`📝 Registering for ${session_name}`);
 
   const data = {
     service: "registration",

@@ -23,7 +23,7 @@ function checkSession(session, queueItem) {
       session.session_id > 0
     ) {
       log(
-        `📝 Race session for series ${queueItem.season_id}, start ${isoTime} found in data.`
+        `📝 Race session for series ${queueItem.season_name}, start time ${isoTime} found`
       );
       watchQueue = watchQueue.filter(
         (item) => item.start_time !== queueItem.start_time
@@ -33,6 +33,7 @@ function checkSession(session, queueItem) {
 
       setTimeout(() => {
         ws.register(
+          queueItem.season_name,
           queueItem.car_id,
           queueItem.car_class_id,
           session.session_id
@@ -85,7 +86,7 @@ function addToQueue(e) {
   }
 
   if (!selectedCar) {
-    log(`🚫 No car selected.`);
+    log(`🚫 No car selected`);
     e.target.innerHTML = "Select Car";
     e.target.classList.add("danger");
     setTimeout(() => {
@@ -98,7 +99,7 @@ function addToQueue(e) {
 
   // check if session is already in queue
   if (watchQueue.find((session) => session.start_time === timestamp)) {
-    log(`🚫 A session for timeslot ${timestamp} is already queued.`);
+    log(`🚫 A session for timeslot ${timestamp} is already queued`);
     return;
   }
 
@@ -111,7 +112,7 @@ function addToQueue(e) {
   });
 
   log(
-    `📝 Added session ${timestamp} for series ${sessionProps.contentId} to queue.`
+    `📝 Added session ${timestamp} for series ${sessionProps.contentId} to queue`
   );
 }
 
