@@ -20,11 +20,10 @@ Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?
 
 1. Download the [launcher latest release](https://github.com/jason-murray/irefined/releases) and unzip it somewhere.
 2. Run `iRefined.exe` to start the iRacing UI with the iRefined extension.
+3. Once the UI has launched you'll find the iRefined queue & log bar at the bottom of the screen, and the settings button (rocket) in the top right.
 
 > [!TIP]
 > Make sure to start the iRacing UI with `iRefined.exe` every time you open iRacing!
-
-Once the UI has launched you'll find the iRefined queue & log bar at the bottom of the screen, and the settings button (rocket) in the top right.
 
 ## Contributing
 WIP
