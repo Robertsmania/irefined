@@ -21,9 +21,19 @@ Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?
 1. Download the [launcher latest release](https://github.com/jason-murray/irefined/releases) and unzip it somewhere.
 2. Run `iRefined.exe` to start the iRacing UI with the iRefined extension.
 3. Once the UI has launched you'll find the iRefined queue & log bar at the bottom of the screen, and the settings button (rocket) in the top right.
+4. Many of the features are disabled to start with, open the settings to turn them on.
 
 > [!TIP]
 > Make sure to start the iRacing UI with `iRefined.exe` every time you open iRacing!
+
+## Common Issues
+
+*Opening the settings sometimes shows the latest announcements screen.*  
+This can usually be sorted by closing the pop up window and clicking the settings button again.
+
+*Feature x isn't working properly.*  
+Because the iRacing UI is essentially a website loaded from the internet, iRacing often roll out changes silently. This can lead to some features breaking without notice.
+Luckily iRefined takes the same approach and can also load fixes without needing to be explicitly updated by the user. If you find something that's not working right, please [create an issue](https://github.com/jason-murray/irefined/issues/new?template=bug_report.md).
 
 ## Contributing
 WIP
