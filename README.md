@@ -32,6 +32,9 @@ Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?
 
 ## Common Issues
 
+*cx_freeze the system cannot find the file specified*
+Currently only Windows is supported, and only the default installation path for iRacing.
+
 *Opening the settings sometimes shows the latest announcements screen.*  
 This can usually be sorted by closing the pop up window and clicking the settings button again.
 
