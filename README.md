@@ -32,7 +32,7 @@ Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?
 
 ## Common Issues
 
-*cx_freeze the system cannot find the file specified*
+*cx_freeze: The system cannot find the file specified*  
 This is likely because iRacing UI is installed in a different place, you can edit config.ini to set the correct path.
 
 *Opening the settings sometimes shows the latest announcements screen.*  
