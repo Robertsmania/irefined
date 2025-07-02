@@ -9,4 +9,4 @@ executables = [
 ]
 
 [tool.cxfreeze.build_exe]
-include_files = ["bootstrap.js"]
+include_files = ["bootstrap.js", "config.ini"]

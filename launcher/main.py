@@ -1,5 +1,6 @@
 import sys
-from os import path, environ
+import configparser
+from os import path
 import subprocess
 import time
 import requests
@@ -7,11 +8,13 @@ import asyncio
 import websockets
 import json
 
-program_files_x86 = environ.get("ProgramFiles(x86)")
+config = configparser.ConfigParser()
+config.read('config.ini')
 
-ELECTRON_APP_PATH = path.join(program_files_x86, "iRacing", "ui", "iRacingUI.exe")
+IRACING_UI_PATH = config.get("Config", "IRACING_UI_PATH")
+REMOTE_DEBUGGING_PORT = config.getint("Config", "REMOTE_DEBUGGING_PORT")
 JS_FILE_PATH = "bootstrap.js"
-REMOTE_DEBUGGING_PORT = 9222
+CONFIG_FILE_PATH = "config.ini"
 
 def find_data_file(filename):
     if getattr(sys, "frozen", False):
@@ -26,7 +29,7 @@ def find_data_file(filename):
 def launch_electron():
     # Launch Electron with remote debugging
     return subprocess.Popen([
-        ELECTRON_APP_PATH,
+        IRACING_UI_PATH,
         f"--remote-debugging-port={REMOTE_DEBUGGING_PORT}"
     ])
 
@@ -54,10 +57,6 @@ async def run_js_from_file(ws_url, js_path):
             "method": "Runtime.evaluate",
             "params": {"expression": js_code}
         }))
-
-        response = await ws.recv()
-        result = json.loads(response)
-        print("JS Evaluation Result:", result.get("result", {}).get("result", {}).get("value"))
 
 def main():
     proc = launch_electron()
