@@ -51,7 +51,11 @@ setInterval(() => {
   queueItemsContainer.innerHTML = "";
 
   if (window.watchQueue && window.watchQueue.length > 0) {
-    window.watchQueue.forEach((item) => {
+    const sortedQueue = [...window.watchQueue].sort(
+      (a, b) => new Date(a.start_time) - new Date(b.start_time)
+    );
+
+    sortedQueue.forEach((item) => {
       const itemEl = (
         <div className="iref-queue-item">
           <button
