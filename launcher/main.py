@@ -1,3 +1,6 @@
+import velopack
+import tkinter as tk
+from tkinter import messagebox, ttk
 import sys
 import configparser
 from os import path
@@ -19,10 +22,9 @@ CONFIG_FILE_PATH = "config.ini"
 def find_data_file(filename):
     if getattr(sys, "frozen", False):
         # The application is frozen
-        datadir = sys.prefix  # datadir = os.path.dirname(sys.executable)
+        datadir = sys.prefix
     else:
         # The application is not frozen
-        # Change this bit to match where you store your data files:
         datadir = path.dirname(__file__)
     return path.join(datadir, filename)
 
@@ -58,10 +60,34 @@ async def run_js_from_file(ws_url, js_path):
             "params": {"expression": js_code}
         }))
 
+def check_update():
+    update_info = manager.check_for_updates()
+    if not update_info:
+        return # no updates available
+
+    answer = messagebox.askyesno("iRefined Update", "Update? (Strongly recommended)")
+    if answer:
+        do_update()
+    else:
+        root.destroy()
+
+def do_update():
+    # Download the updates
+    manager.download_updates(update_info)
+
+    # Apply the update and restart the app
+    manager.apply_updates_and_restart(update_info)
+
 def main():
-    proc = launch_electron()
+    check_update()
+    launch_electron()
     ws_url = get_websocket_url()
     asyncio.run(run_js_from_file(ws_url, find_data_file(JS_FILE_PATH)))
 
+root = tk.Tk()
+root.withdraw()
+manager = velopack.UpdateManager("https://github.com/jason-murray/irefined")
+
 if __name__ == "__main__":
+    velopack.App().run()
     main()

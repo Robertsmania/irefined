@@ -7,6 +7,7 @@ name = "pypi"
 cx-freeze = "*"
 requests = "*"
 websockets = "*"
+velopack = "*"
 
 [dev-packages]
 
