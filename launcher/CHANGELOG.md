@@ -1,5 +1,14 @@
 # Changelog
 
+## [v1.3.1]
+
+- Update nudge to test velopack updater
+
+## [v1.3.0]
+
+- Move to semver
+- Start using velopack for installer/updater
+
 ## [v1.2]
 
 iRacingUI path and port moved to config.ini for advanced configuration. Non standard install paths now supported.
