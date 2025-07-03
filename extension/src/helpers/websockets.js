@@ -64,6 +64,15 @@ function initWS() {
     callbacks.forEach((callback) => {
       callback(data);
     });
+
+    if (!window.irefIndex) {
+      window.irefIndex = {};
+      try {
+        data.data.sessions.forEach((session) => {
+          window.irefIndex[session.season_id] = session.season_name;
+        });
+      } catch {}
+    }
   });
 }
 

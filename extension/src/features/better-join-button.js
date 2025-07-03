@@ -53,6 +53,10 @@ async function init(activate = true) {
 
     //joinBtnEl.innerHTML = joinBtnEl.innerHTML + " " + label;
     joinBtnEl.innerHTML = label1 == "Race" ? label1 + label2 : label1;
+    $(".chakra-text.css-1ap4k1m").innerText =
+      joinProps.registrationStatus.season_id in window.irefIndex
+        ? window.irefIndex[joinProps.registrationStatus.season_id]
+        : "Unknown Series";
   }, 300);
 }
 
