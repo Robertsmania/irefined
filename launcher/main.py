@@ -71,7 +71,7 @@ def check_update():
     else:
         root.destroy()
 
-def do_update():
+def do_update(update_info):
     # Download the updates
     manager.download_updates(update_info)
 
