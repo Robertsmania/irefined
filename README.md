@@ -22,13 +22,14 @@ Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?
 
 ## Usage & Download
 
-1. Download the [launcher latest release](https://github.com/jason-murray/irefined/releases) and unzip it somewhere.
-2. Run `iRefined.exe` to start the iRacing UI with the iRefined extension.
-3. Once the UI has launched you'll find the iRefined queue & log bar at the bottom of the screen, and the settings button (rocket) in the top right.
-4. Many of the features are disabled to start with, open the settings to turn them on.
+1. Close the iRacing UI.
+2. Download the [installer](https://github.com/jason-murray/irefined/releases/latest/download/iRefined-win-Setup.exe) and run it.
+3. The installer will launch the iRacing UI with iRefined automatically when it's finished. You will also have a shortcut to iRefined on the desktop and in the start menu.
+4. Once the UI has launched you'll find the iRefined queue & log bar at the bottom of the screen, and the settings button (rocket) in the top right.
+5. Many of the features are disabled to start with, open the settings to turn them on.
 
 > [!TIP]
-> Make sure to start the iRacing UI with `iRefined.exe` every time you open iRacing!
+> Make sure to start the iRacing UI with `iRefined` shortcut every time you open iRacing!
 
 ## Common Issues
 
