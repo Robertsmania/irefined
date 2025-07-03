@@ -86,7 +86,7 @@ def main():
 
 root = tk.Tk()
 root.withdraw()
-manager = velopack.UpdateManager("https://github.com/jason-murray/irefined")
+manager = velopack.UpdateManager("https://github.com/jason-murray/irefined/releases/latest/download")
 
 if __name__ == "__main__":
     velopack.App().run()
