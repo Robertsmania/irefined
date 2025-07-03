@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ebe5a87725add555effd745a493809ce38d7497adc62b6752b59170ed123be63"
+            "sha256": "077156f5467bd19997a57ad5ff3a824c795504b703d62a4373d9916a01af689a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -361,6 +361,29 @@
             ],
             "markers": "python_version >= '3.9'",
             "version": "==2.5.0"
+        },
+        "velopack": {
+            "hashes": [
+                "sha256:011704025fc796c2e8924ced2322357d853dc7ff09038a8f98dea31801e1d15a",
+                "sha256:1b249326d6a9cd1d5cbf9f606bfb8b189aa00b69b5977938a8b4a25267eae745",
+                "sha256:39f9be9234d08439777ed24b5abcb89b7574f2c9aa98704141253f817055abbd",
+                "sha256:3ef3bb4445c7ae9d189a966cc825f849c8635ccd3b97d3790941d7b2fbcace14",
+                "sha256:4046fe19a200f0a295285ae9bbc0ea80eb7140ffd569138ddf85377c84379c35",
+                "sha256:59428b6f9c15b095711e85f72b0dcc888e28d875b0146948a1519fb7718cc9e8",
+                "sha256:7edc8f3ef70b312c569baa3406d9c7b57f57106a0eedef43a14672ac6e96aaf4",
+                "sha256:88e9594be5ba0b422907dc7fda8cd968e550cce6da18cf685612fe66b82005bc",
+                "sha256:8d300173d7087b4cb408ca0dc8ebb878ea1a7e092945892ab8218499c2ba54cd",
+                "sha256:a0051a95e276e09108978d2f275601bc1e6e2683bad5ffb9cb71976c09d78923",
+                "sha256:af75287edceee91cd46b378a6b1945d5c2cc5ff049e958e7bffd174608ad349f",
+                "sha256:bac2a209d9c79fb34703e0a1de0f8901579b60c2e44c2930fc6c4a6c15dab616",
+                "sha256:d1f109b001b880d80745ef12a37dc4f692021aceb67875366edb9af7a95678ed",
+                "sha256:d73d0a8a80b708334c19d66bd4a5489de4e75d50332afcbcd42afc5ec9d1d4ad",
+                "sha256:f57cf2098542aa8e89a0f922d1708f489fcd419352d211c81e66b91e5cd1f2ee",
+                "sha256:fbaa4e75ee872160b2b332a46a9e3db5d434d7b9083ea39dadff319f0ccefe29"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==0.0.1350.dev15267"
         },
         "websockets": {
             "hashes": [

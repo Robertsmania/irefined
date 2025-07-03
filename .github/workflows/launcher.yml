@@ -32,17 +32,9 @@ jobs:
           cxfreeze build --target-dir=dist
         working-directory: launcher
 
-      - name: Archive Release
-        uses: thedoctor0/zip-release@0.7.5
-        with:
-          type: "zip"
-          directory: "launcher/dist"
-          filename: "iRefined-Launcher-${{ github.ref_name }}.zip"
-          exclusions: "frozen_application_license.txt"
-
-      - name: Release launcher
-        uses: softprops/action-gh-release@v2
-        with:
-          files: "launcher/dist/iRefined-Launcher-${{ github.ref_name }}.zip"
-          name: iRefined Launcher v${{ github.ref_name }}
-          body_path: launcher/CHANGELOG.md
+      - name: Create Velopack Release
+        run: |
+          dotnet tool install -g vpk
+          vpk pack -u iRefined -v ${{ github.ref_name }} -p .\dist -o .\release --noPortable
+          vpk upload github -o .\release --repoUrl https://github.com/${{ github.repository }} --publish --releaseName "iRefined Launcher v${{ github.ref_name }}" --tag ${{ github.ref_name }}
+        working-directory: launcher

@@ -11,4 +11,5 @@ requests==2.32.4
 striprtf==0.0.29
 tomli==2.2.1
 urllib3==2.5.0
+velopack==0.0.1350.dev15267
 websockets==15.0.1
