@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.3.2]
+
+- Fix update routine, versions prior to 1.3.2 will not auto update correctly.
+
 ## [v1.3.1]
 
 - Update nudge to test velopack updater
