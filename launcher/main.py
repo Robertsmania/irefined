@@ -1,6 +1,6 @@
 import velopack
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox
 import sys
 import configparser
 from os import path
