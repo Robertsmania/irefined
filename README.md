@@ -17,7 +17,6 @@
 
 ## Planned
 :black_circle: Hide iRating everywhere.  
-:black_circle: Sort queue by countdown timer.  
 :black_circle: Play notification sound when Race session is available.
 
 Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?template=feature_request.md)?
@@ -34,9 +33,6 @@ Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?
 > Make sure to start the iRacing UI with the `iRefined` shortcut every time you open iRacing!
 
 ## Common Issues
-
-*cx_freeze: The system cannot find the file specified*  
-This is likely because iRacing UI is installed in a different place, you can edit config.ini to set the correct path.
 
 *Opening the settings sometimes shows the latest announcements screen.*  
 This can usually be sorted by closing the pop up window and clicking the settings button again.
