@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.4]
+## [v1.4.0]
 
 - Improved logic for locating iRacingUI.exe including a file browser to update the config entry if it can't be found.
 - Moved config.ini to `Documents/iRefined`, it will be created here if it does not exist. No longer provided in the release.
