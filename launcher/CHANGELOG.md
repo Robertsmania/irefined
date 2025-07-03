@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.3.5]
+
+- Added an icon (mmm purple).
+
 ## [v1.3.4]
 
 - Release update routine, versions prior to 1.3.4 will not auto update correctly.
