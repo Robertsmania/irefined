@@ -17,6 +17,8 @@
 
 ## Planned
 :black_circle: Hide iRating everywhere.  
+:black_circle: Sort queue by countdown timer.  
+:black_circle: Play notification sound when Race session is available.
 
 Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?template=feature_request.md)?
 
