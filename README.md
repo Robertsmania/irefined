@@ -31,7 +31,7 @@ Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?
 5. Many of the features are disabled to start with, open the settings to turn them on.
 
 > [!TIP]
-> Make sure to start the iRacing UI with `iRefined` shortcut every time you open iRacing!
+> Make sure to start the iRacing UI with the `iRefined` shortcut every time you open iRacing!
 
 ## Common Issues
 
