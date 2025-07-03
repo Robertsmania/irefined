@@ -1,9 +1,9 @@
 import velopack
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, filedialog
 import sys
 import configparser
-from os import path
+from os import path, makedirs
 import subprocess
 import time
 import requests
@@ -11,13 +11,11 @@ import asyncio
 import websockets
 import json
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-
-IRACING_UI_PATH = config.get("Config", "IRACING_UI_PATH")
-REMOTE_DEBUGGING_PORT = config.getint("Config", "REMOTE_DEBUGGING_PORT")
+# Get the user's Documents folder and create iRefined folder if needed
+DOCUMENTS_PATH = path.join(path.expanduser("~"), "Documents")
+IREFINED_CONFIG_DIR = path.join(DOCUMENTS_PATH, "iRefined")
+CONFIG_FILE_PATH = path.join(IREFINED_CONFIG_DIR, "config.ini")
 JS_FILE_PATH = "bootstrap.js"
-CONFIG_FILE_PATH = "config.ini"
 
 def find_data_file(filename):
     if getattr(sys, "frozen", False):
@@ -28,12 +26,84 @@ def find_data_file(filename):
         datadir = path.dirname(__file__)
     return path.join(datadir, filename)
 
+root = tk.Tk()
+root.withdraw()  # Hide the main window
+root.iconbitmap(find_data_file("icon.ico"))
+
+def create_default_config():
+    # Create default config file in Documents/iRefined/
+    if not path.exists(IREFINED_CONFIG_DIR):
+        makedirs(IREFINED_CONFIG_DIR)
+    
+    config = configparser.ConfigParser()
+    config['Config'] = {
+        'IRACING_UI_PATH': 'C:\\Program Files (x86)\\iRacing\\ui\\iRacingUI.exe',
+        'REMOTE_DEBUGGING_PORT': '9222'
+    }
+    
+    with open(CONFIG_FILE_PATH, 'w') as configfile:
+        config.write(configfile)
+    
+    return config
+
+def load_config():
+    # Load config from Documents/iRefined/config.ini, create if doesn't exist
+    config = configparser.ConfigParser()
+    
+    if path.exists(CONFIG_FILE_PATH):
+        config.read(CONFIG_FILE_PATH)
+    else:
+        config = create_default_config()
+    
+    return config
+
+def save_config(config):
+    # Save config to Documents/iRefined/config.ini
+    with open(CONFIG_FILE_PATH, 'w') as configfile:
+        config.write(configfile)
+
+def browse_for_iracing_ui():
+    # Show file browser to select iRacing UI executable    
+    messagebox.showinfo("iRefined", "Please locate your iRacingUI.exe\n\nUsually found at:\nC:\\Program Files (x86)\\iRacing\\ui\\iRacingUI.exe")
+    
+    file_path = filedialog.askopenfilename(
+        title="Select iRacingUI.exe",
+        filetypes=[("Executable files", "*.exe"), ("All files", "*.*")],
+        initialdir="C:\\Program Files (x86)\\iRacing\\ui\\"
+    )
+    
+    return file_path
+
+config = load_config()
+IRACING_UI_PATH = config.get("Config", "IRACING_UI_PATH")
+REMOTE_DEBUGGING_PORT = config.getint("Config", "REMOTE_DEBUGGING_PORT")
+
 def launch_electron():
+    global IRACING_UI_PATH
     # Launch Electron with remote debugging
-    return subprocess.Popen([
-        IRACING_UI_PATH,
-        f"--remote-debugging-port={REMOTE_DEBUGGING_PORT}"
-    ])
+    try:
+        if not path.exists(IRACING_UI_PATH):
+            # Show file browser to select iRacing UI
+            new_path = browse_for_iracing_ui()
+            if not new_path:
+                messagebox.showerror("iRefined Error", "No iRacing UI executable selected. Cannot continue.")
+                sys.exit(1)
+            
+            # Update the config with the new path
+            IRACING_UI_PATH = new_path
+            config.set("Config", "IRACING_UI_PATH", new_path)
+            save_config(config)
+                    
+        return subprocess.Popen([
+            IRACING_UI_PATH,
+            f"--remote-debugging-port={REMOTE_DEBUGGING_PORT}"
+        ])
+    except FileNotFoundError as e:
+        messagebox.showerror("iRefined Error", f"iRacing UI path not found.\n\nError: {str(e)}")
+        sys.exit(1)
+    except Exception as e:
+        messagebox.showerror("iRefined Error", f"Failed to launch iRacing UI.\n\nError: {str(e)}")
+        sys.exit(1)
 
 def get_websocket_url():
     for _ in range(10):
@@ -68,15 +138,12 @@ def check_update():
     if not update_info:
         return # no updates available
 
-    answer = messagebox.askyesno("iRefined Update", "Update? (Strongly recommended)")
-    if answer:
-            # Download the updates
-            manager.download_updates(update_info)
+    # Download the updates
+    manager.download_updates(update_info)
 
-            # Apply the update and restart the app
-            manager.apply_updates_and_restart(update_info)
-    else:
-        root.destroy()
+    # Apply the update and restart the app
+    manager.apply_updates_and_restart(update_info)
+
 
 def main():
     if getattr(sys, "frozen", False):
@@ -85,9 +152,6 @@ def main():
     launch_electron()
     ws_url = get_websocket_url()
     asyncio.run(run_js_from_file(ws_url, find_data_file(JS_FILE_PATH)))
-
-root = tk.Tk()
-root.withdraw()
 
 if __name__ == "__main__":
     velopack.App().run()
