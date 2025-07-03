@@ -2,7 +2,7 @@
   <img width="300" src="https://github.com/jason-murray/irefined/blob/main/extension/src/assets/logo.png?raw=true" alt="iRefined Logo"/>
 </p>
 <p align="center">
-  An extension for the iRacing UI that adds some quality of life features for drivers everywhere.
+  An unofficial extension for the iRacing UI that adds some quality of life features for drivers everywhere.
 </p>
 
 ## Features
