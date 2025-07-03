@@ -2,21 +2,9 @@
 
 ## [v1.3.4]
 
-- Fix update routine, versions prior to 1.3.4 will not auto update correctly.
+- Release update routine, versions prior to 1.3.4 will not auto update correctly.
 
-## [v1.3.3]
-
-- Fix update routine, versions prior to 1.3.3 will not auto update correctly.
-
-## [v1.3.2]
-
-- Fix update routine, versions prior to 1.3.2 will not auto update correctly.
-
-## [v1.3.1]
-
-- Update nudge to test velopack updater
-
-## [v1.3.0]
+## [v1.3.0-v1.3.3]
 
 - Move to semver
 - Start using velopack for installer/updater
