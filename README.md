@@ -6,8 +6,10 @@
 </p>
 
 ## Features
-:heavy_check_mark: Load/save/share test drive config as json files.  
-:heavy_check_mark: Load/save/share hosted session config as json files.  
+
+### Load/save/share test drive & hosted config as json file
+![Save Conditions](readme-files/saving-conditions.gif)
+
 :heavy_check_mark: Green join button shows the session type e.g. Race, Practice, Spectate, Spot.  
 :heavy_check_mark: Automatically launch sim for sessions.  
 :heavy_check_mark: Automatically forfeit sessions after x minutes.  
