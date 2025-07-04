@@ -5,15 +5,20 @@
   An unofficial extension for the iRacing UI that adds some quality of life features for drivers everywhere.
 </p>
 
-## Features
+## 🚀 Features
 
-### Load/save/share test drive & hosted config as json file
+### 💾 Load/save/share test drive & hosted config as json file
 ![Save Conditions](readme-files/saving-conditions.gif)
 
-:heavy_check_mark: Green join button shows the session type e.g. Race, Practice, Spectate, Spot.  
+### 🏁 Green join bar shows the season and session type on the button
+![Join Bar](readme-files/better-join-bar.png)
+
+### ⏰ Queue for future races where registration is not open yet
+![Queue Bar](readme-files/queue-bar.png)
+
+### Other stuff
 :heavy_check_mark: Automatically launch sim for sessions.  
 :heavy_check_mark: Automatically forfeit sessions after x minutes.  
-:heavy_check_mark: Queue for future races where registration is not open yet.  
 :heavy_check_mark: Automatically close notifications after x seconds.  
 :heavy_check_mark: Hide sidebars & collapse menu for more screen real estate.
 
