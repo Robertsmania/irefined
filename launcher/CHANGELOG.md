@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.5.1]
+
+- Tray app now has right click menu item to launch iRefined at Windows start-up.
+
 ## [v1.5.0]
 
 - YATA (Yet another tray app!) That's right folks, as of launcher v1.5.0 iRefined is now a tray app.

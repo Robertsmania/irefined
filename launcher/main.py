@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+from pathlib import Path
 import subprocess
 import sys
 import threading
@@ -12,6 +13,7 @@ import pystray
 import requests
 import velopack
 import websockets
+import win32com.client
 from PIL import Image
 
 DISCORD_URL = "https://discord.gg/hxVf8wcGaV"
@@ -27,6 +29,32 @@ def find_data_file(filename):
         # The application is not frozen
         datadir = path.dirname(__file__)
     return path.join(datadir, filename)
+
+
+STARTUP_FOLDER = os.path.join(
+    os.environ["APPDATA"], "Microsoft\\Windows\\Start Menu\\Programs\\Startup"
+)
+SHORTCUT_PATH = os.path.join(STARTUP_FOLDER, "iRefined.lnk")
+
+
+def create_startup_shortcut():
+    shell = win32com.client.Dispatch("WScript.Shell")
+    shortcut = shell.CreateShortCut(SHORTCUT_PATH)
+    shortcut.TargetPath = sys.executable
+    shortcut.WorkingDirectory = os.path.dirname(SHORTCUT_PATH)
+    shortcut.IconLocation = sys.executable
+    shortcut.save()
+    print("[INFO] Startup enabled.")
+
+
+def remove_startup_shortcut():
+    if os.path.exists(SHORTCUT_PATH):
+        os.remove(SHORTCUT_PATH)
+        print("[INFO] Startup disabled.")
+
+
+def is_startup_enabled():
+    return os.path.exists(SHORTCUT_PATH)
 
 
 def get_websocket_url():
@@ -69,7 +97,7 @@ def check_update():
             return
 
         # Download and apply updates
-        print(f"[INFO] Update available! Applying...")
+        print("[INFO] Update available! Applying...")
         manager.download_updates(update_info)
         manager.apply_updates_and_restart(update_info)
 
@@ -141,6 +169,16 @@ def open_discord():
     webbrowser.open(DISCORD_URL)
 
 
+def toggle_startup(icon, item):
+    if is_startup_enabled():
+        remove_startup_shortcut()
+        item.checked = False
+    else:
+        create_startup_shortcut()
+        item.checked = True
+    icon.update_menu()
+
+
 def main():
     check_update()
 
@@ -150,17 +188,20 @@ def main():
     icon.run()
 
 
-image = Image.open(find_data_file("icon.ico"))
-menu = (
-    pystray.MenuItem("Discord", open_discord),
-    pystray.Menu.SEPARATOR,
-    pystray.MenuItem("Update Check", check_update),
-    pystray.MenuItem("Quit", on_quit),
-)
-icon = pystray.Icon("iRefined", image, "iRefined", menu)
-
 if __name__ == "__main__":
     if getattr(sys, "frozen", False):
         velopack.App().run()
+
+    image = Image.open(find_data_file("icon.ico"))
+    menu = (
+        pystray.MenuItem("Discord", open_discord),
+        pystray.Menu.SEPARATOR,
+        pystray.MenuItem(
+            "Run at Startup", toggle_startup, checked=lambda item: is_startup_enabled()
+        ),
+        pystray.MenuItem("Check for Updates", check_update),
+        pystray.MenuItem("Quit", on_quit),
+    )
+    icon = pystray.Icon("iRefined", image, "iRefined", menu)
 
     main()

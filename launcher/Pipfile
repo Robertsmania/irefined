@@ -10,6 +10,7 @@ websockets = "*"
 velopack = "*"
 psutil = "*"
 pystray = "*"
+pywin32 = "*"
 
 [dev-packages]
 

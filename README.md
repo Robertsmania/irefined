@@ -13,21 +13,26 @@
 ## 🚀 Features
 
 ### ⏰ Queue for future races where registration is not open yet
+
 ![Queue Bar](readme-files/queue-bar.png)
 
 ### 💾 Load/save/share test drive & hosted config as json file
+
 ![Save Conditions](readme-files/saving-conditions.gif)
 
 ### 🏁 Green join bar shows the season and session type on the button
+
 ![Join Bar](readme-files/better-join-bar.png)
 
 ### Other stuff
+
 :heavy_check_mark: Automatically launch sim for sessions.  
 :heavy_check_mark: Automatically forfeit sessions after x minutes.  
 :heavy_check_mark: Automatically close notifications after x seconds.  
 :heavy_check_mark: Hide sidebars & collapse menu for more screen real estate.
 
 ## Planned
+
 :black_circle: Hide iRating everywhere.  
 :black_circle: Play notification sound when Race session is available.
 
@@ -43,19 +48,21 @@ Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?
 6. Many of the features are disabled to start with, open the settings to turn them on.
 
 > [!TIP]
-> Make sure iRefined is running before you open the iRacing UI! You can add it to start-up by hitting `Windows + R` and entering `shell:startup` then placing a copy of the iRefined shortcut in this folder.
+> Make sure iRefined is running before you open the iRacing UI! You can add it to Windows start-up by right clicking the tray icon and choosing this option.
 
 ## Common Issues
 
-*Opening the settings sometimes shows the latest announcements screen.*  
+_Opening the settings sometimes shows the latest announcements screen._  
 This can usually be sorted by closing the pop up window and clicking the settings button again.
 
-*Feature x isn't working properly.*  
+_Feature x isn't working properly._  
 Because the iRacing UI is essentially a website loaded from the internet, iRacing often roll out changes silently. This can lead to some features breaking without notice.
 Luckily iRefined takes the same approach and can also load fixes without needing to be explicitly updated by the user. If you find something that's not working right, please [create an issue](https://github.com/jason-murray/irefined/issues/new?template=bug_report.md).
 
 ## Contributing
+
 WIP
 
 ### Build Launcher
+
 `pipenv run cxfreeze build --target-dir=dist`
