@@ -35,11 +35,11 @@ function initWS() {
   });
 
   authSocket.on("connect", () => {
-    log("⚡ Connected to iRacing WS");
+    log("⚡ Connected to iRacing");
   });
 
   authSocket.on("disconnect", () => {
-    log("⛓️‍💥 Disconnected from iRacing WS");
+    log("⛓️‍💥 Disconnected from iRacing");
   });
 
   clientSocket.on("initialized", (data) => {
