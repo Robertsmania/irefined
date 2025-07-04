@@ -1,5 +1,7 @@
 name: extension
 
+on: push
+
 permissions:
   id-token: write
   pages: write
