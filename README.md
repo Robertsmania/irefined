@@ -7,14 +7,14 @@
 
 ## 🚀 Features
 
+### ⏰ Queue for future races where registration is not open yet
+![Queue Bar](readme-files/queue-bar.png)
+
 ### 💾 Load/save/share test drive & hosted config as json file
 ![Save Conditions](readme-files/saving-conditions.gif)
 
 ### 🏁 Green join bar shows the season and session type on the button
 ![Join Bar](readme-files/better-join-bar.png)
-
-### ⏰ Queue for future races where registration is not open yet
-![Queue Bar](readme-files/queue-bar.png)
 
 ### Other stuff
 :heavy_check_mark: Automatically launch sim for sessions.  
