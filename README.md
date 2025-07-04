@@ -3,7 +3,7 @@
 </p>
 <div align="center">
   
-[![](https://dcbadge.limes.pink/api/server/hxVf8wcGaV)](https://discord.gg/hxVf8wcGaV)
+[![](https://dcbadge.limes.pink/api/server/hxVf8wcGaV)](https://discord.gg/hxVf8wcGaV) &nbsp; [![](https://img.shields.io/badge/buy_me_a_coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/jason_)
   
 </div>
 <p align="center">
