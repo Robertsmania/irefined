@@ -8,6 +8,8 @@ cx-freeze = "*"
 requests = "*"
 websockets = "*"
 velopack = "*"
+psutil = "*"
+pystray = "*"
 
 [dev-packages]
 
