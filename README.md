@@ -1,6 +1,11 @@
 <p align="center">
   <img width="300" src="https://github.com/jason-murray/irefined/blob/main/extension/src/assets/logo.png?raw=true" alt="iRefined Logo"/>
 </p>
+<div align="center">
+  
+[![](https://dcbadge.limes.pink/api/server/hxVf8wcGaV)](https://discord.gg/hxVf8wcGaV)
+  
+</div>
 <p align="center">
   An unofficial extension for the iRacing UI that adds some quality of life features for drivers everywhere.
 </p>
