@@ -6,8 +6,6 @@ import { $ } from "select-dom";
 
 const selector = ".css-qlxuh7 .btn-success";
 
-let lastJoined;
-
 async function init(activate = true) {
   if (!activate) {
     return;
@@ -17,10 +15,15 @@ async function init(activate = true) {
     JSON.parse(localStorage.getItem("iref_settings"))["auto-join-type"] ||
     "race";
 
+  let lastJoined = localStorage.getItem("iref_last_joined");
+
   const joinProps = findProps($(selector));
 
   if (joinProps.registrationStatus.subsession_id !== lastJoined) {
-    lastJoined = joinProps.registrationStatus.subsession_id;
+    localStorage.setItem(
+      "iref_last_joined",
+      joinProps.registrationStatus.subsession_id
+    );
     if (
       type !== "race" ||
       (type === "race" &&
