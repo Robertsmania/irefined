@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.5.0]
+
+- YATA (Yet another tray app!) That's right folks, as of launcher v1.5.0 iRefined is now a tray app.
+- iRefined will automatically load the extension to any iRacing UI instance you open.
+- No need to launch the UI through the iRefined shortcut.
+
 ## [v1.4.0]
 
 - Improved logic for locating iRacingUI.exe including a file browser to update the config entry if it can't be found.
