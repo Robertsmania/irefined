@@ -38,3 +38,12 @@ jobs:
           vpk pack -u iRefined -v ${{ github.ref_name }} -p .\dist -o .\release --noPortable --icon icon.ico
           vpk upload github -o .\release --repoUrl https://github.com/${{ github.repository }} --publish --releaseName "iRefined Launcher v${{ github.ref_name }}" --tag ${{ github.ref_name }} --token ${{ secrets.GITHUB_TOKEN }}
         working-directory: launcher
+
+      - name: Discord Webhook Action
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          content: |
+            **New launcher release! Restart iRefined to get the latest version.**
+
+            Or grab it here: https://github.com/jason-murray/irefined/releases/latest/download/iRefined-win-Setup.exe
