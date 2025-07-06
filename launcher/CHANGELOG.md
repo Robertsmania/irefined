@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.5.2]
+
+- Switched to applying persistent config for the CDP port.
+- This requires a UAC prompt if the local.json file is missing to place it within Program Files.
+- New method of opening port is much more reliable and fast. Does not require restarting the iRacing UI process or polling for processes.
+
 ## [v1.5.1]
 
 - Tray app now has right click menu item to launch iRefined at Windows start-up.
