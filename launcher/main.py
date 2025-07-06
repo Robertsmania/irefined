@@ -1,4 +1,5 @@
 import asyncio
+from ctypes import windll
 import configparser
 import json
 import os
@@ -208,24 +209,28 @@ def check_update():
         manager.apply_updates_and_restart(update_info)
 
 
-def create_config_json():
-    local_json_dir = path.join(IRACING_PATH, "ui", "config")
-    if not path.exists(local_json_dir):
-        makedirs(local_json_dir)
+def maybe_create_local_json():
+    local_json_path = path.join(IRACING_PATH, "ui", "config", "local.json")
+    if not path.exists(local_json_path):
+        bat_file_path = find_data_file("install_config.bat")
+        result = windll.shell32.ShellExecuteW(
+            None,
+            "runas",
+            "cmd.exe",
+            " ".join(["/c", bat_file_path, f'"{IRACING_PATH}"']),
+            None,
+            1,
+        )
 
-    local_json_path = path.join(local_json_dir, "local.json")
-
-    config_data = {
-        "scorpioDebugPort": REMOTE_DEBUGGING_PORT,
-    }
-    with open(local_json_path, "w") as f:
-        json.dump(config_data, f, indent=4)
-    print("[INFO] Created local.json")
+        if not result > 32:
+            print("[ERROR] Failed to create local.json")
+            return
+        print("[INFO] Created local.json")
 
 
 def main():
     check_update()
-    create_config_json()
+    maybe_create_local_json()
     print("[INFO] iRefined ready")
     threading.Thread(target=monitor_websocket, daemon=True).start()
     icon.run()
