@@ -8,13 +8,12 @@ idna==3.10
 lief==0.16.5
 packaging==25.0
 pillow==11.3.0
-psutil==7.0.0
 pystray==0.19.5
 pywin32==310
 requests==2.32.4
+setuptools==80.4.0
 six==1.17.0
 striprtf==0.0.29
-tomli==2.2.1
 urllib3==2.5.0
 velopack==0.0.1350.dev15267
 websockets==15.0.1

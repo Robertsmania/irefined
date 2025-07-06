@@ -8,12 +8,11 @@ cx-freeze = "*"
 requests = "*"
 websockets = "*"
 velopack = "*"
-psutil = "*"
 pystray = "*"
 pywin32 = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9"
-python_full_version = "3.9.13"
+python_version = "3.13"
+python_full_version = "3.13.5"
