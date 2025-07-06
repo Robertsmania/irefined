@@ -63,7 +63,7 @@ def create_startup_shortcut():
     shortcut.WorkingDirectory = os.path.dirname(SHORTCUT_PATH)
     shortcut.IconLocation = sys.executable
     shortcut.save()
-    print("[INFO] Startup enabled.")
+    print("[INFO] Startup enabled")
 
 
 def load_config():
@@ -96,9 +96,16 @@ def set_iracing_install():
         title="Select iRacing Install Folder",
         initialdir="C:\\",
     )
+    if not iracing_install_path:
+        messagebox.showerror("iRefined", "No folder selected, exiting!")
+        sys.exit(1)
 
     return iracing_install_path
 
+
+root = tkinter.Tk()
+root.withdraw()
+root.iconbitmap(find_data_file("icon.ico"))
 
 config = load_config()
 IRACING_PATH = config.get("Config", "IRACING_PATH")
@@ -192,7 +199,7 @@ def check_update():
 
         update_info = manager.check_for_updates()
         if not update_info:
-            print("[INFO] No updates available.")
+            print("[INFO] No updates available")
             return
 
         # Download and apply updates
@@ -219,6 +226,7 @@ def create_config_json():
 def main():
     check_update()
     create_config_json()
+    print("[INFO] iRefined ready")
     threading.Thread(target=monitor_websocket, daemon=True).start()
     icon.run()
 
@@ -226,10 +234,6 @@ def main():
 if __name__ == "__main__":
     if getattr(sys, "frozen", False):
         velopack.App().run()
-
-    root = tkinter.Tk()
-    root.withdraw()
-    root.iconbitmap(find_data_file("icon.ico"))
 
     image = Image.open(find_data_file("icon.ico"))
     menu = (
