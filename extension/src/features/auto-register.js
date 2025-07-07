@@ -12,6 +12,10 @@ let persistInterval = 0;
 window.watchQueue = [];
 
 function checkSession(session, queueItem) {
+  if (queueItem.status !== "queued") {
+    return;
+  }
+
   let isoTime =
     new Date(queueItem.start_time).toISOString().split(".")[0] + "Z";
 
@@ -25,23 +29,46 @@ function checkSession(session, queueItem) {
       log(
         `📝 Race session for series ${queueItem.season_name}, start time ${isoTime} found`
       );
-      watchQueue = watchQueue.filter(
-        (item) => item.start_time !== queueItem.start_time
+
+      queueItem.session_id = session.session_id;
+      queueItem.status = "found";
+    }
+  }
+}
+
+setInterval(() => {
+  if (watchQueue.length < 1) {
+    return;
+  }
+
+  watchQueue.forEach((queueItem) => {
+    const startTime = new Date(queueItem.start_time);
+    const now = new Date();
+    const timeDiff = startTime - now;
+    if (timeDiff <= 5 * 60 * 1000 && queueItem.status === "found") {
+      queueItem.status = "registering";
+
+      log(
+        `📝 Registering for series ${queueItem.season_name} in 10 seconds...`
       );
 
       ws.withdraw();
 
       setTimeout(() => {
+        watchQueue = watchQueue.filter(
+          (item) => item.start_time !== queueItem.start_time
+        );
+
         ws.register(
           queueItem.season_name,
           queueItem.car_id,
           queueItem.car_class_id,
-          session.session_id
+          queueItem.session_id
         );
       }, 5000);
     }
-  }
-}
+  });
+}, 1000);
 
 const wsCallback = (data) => {
   // loop watchQueue
@@ -97,7 +124,6 @@ function addToQueue(e) {
     return;
   }
 
-  // check if session is already in queue
   if (watchQueue.find((session) => session.start_time === timestamp)) {
     log(`🚫 A session for timeslot ${timestamp} is already queued`);
     return;
@@ -109,6 +135,7 @@ function addToQueue(e) {
     season_id: sessionProps.contentId,
     season_name: $(".chakra-screen-billboard .chakra-heading").innerText,
     start_time: timestamp,
+    status: "queued",
   });
 
   log(
@@ -123,25 +150,48 @@ async function init(activate = true) {
   }
 
   persistInterval = setInterval(() => {
-    let buttons = $$(".chakra-table a.btn-success.disabled");
+    let disabledRegButtons = $$(".chakra-table a.btn-success.disabled");
 
-    if (!buttons) {
+    if (!disabledRegButtons) {
       return;
     }
 
-    for (let i = 0; i < buttons.length; i++) {
-      const button = buttons[i];
+    for (let i = 0; i < disabledRegButtons.length; i++) {
+      const button = disabledRegButtons[i];
 
       const sessionProps = findProps(button);
 
       if (sessionProps.max_team_drivers > 1) {
-        return;
+        break;
       }
 
       button.classList.add("iref-queue-btn");
       button.classList.remove("disabled", "btn-success");
       button.innerHTML = "Queue";
       button.addEventListener("click", addToQueue);
+    }
+
+    let regButtons = $$(".chakra-table a.btn-success");
+
+    if (!regButtons) {
+      return;
+    }
+
+    for (let i = 0; i < regButtons.length; i++) {
+      const button = regButtons[i];
+
+      const sessionProps = findProps(button);
+
+      watchQueue.forEach((queueItem) => {
+        if (
+          queueItem.season_id === sessionProps.contentId &&
+          queueItem.start_time === sessionProps.session.start_time
+        ) {
+          button.classList.add("iref-disabled");
+          button.classList.remove("btn-success");
+          button.innerHTML = "Queued";
+        }
+      });
     }
   }, 300);
 }

@@ -9,6 +9,11 @@
   background-color: red !important;
 }
 
+.iref-disabled {
+  pointer-events: none !important;
+  background-color: #aaa !important;
+}
+
 .iref-auto-register {
   div[data-popper-placement="top"] {
     display: none !important;

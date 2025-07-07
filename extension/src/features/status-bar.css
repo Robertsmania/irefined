@@ -58,10 +58,32 @@
   .iref-remove-btn {
     font-size: 36px;
     line-height: 0px;
-    transform: translate(-2px, 5px);
+    transform: translate(5px, 5px);
   }
 
   .iref-bar-right {
     width: 200px;
+  }
+
+  .iref-queue-status {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-right: 8px;
+
+    transform: translate(0, 2px);
+
+    &.found {
+      background-color: #005db4;
+    }
+
+    &.registering {
+      background-color: #06bd00;
+    }
+
+    &.queued {
+      background-color: #808080;
+    }
   }
 }
