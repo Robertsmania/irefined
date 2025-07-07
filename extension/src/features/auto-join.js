@@ -15,15 +15,13 @@ async function init(activate = true) {
     JSON.parse(localStorage.getItem("iref_settings"))["auto-join-type"] ||
     "race";
 
-  let lastJoined = localStorage.getItem("iref_last_joined");
+  let lastJoined = parseInt(localStorage.getItem("iref_last_joined"));
 
   const joinProps = findProps($(selector));
 
   if (joinProps.registrationStatus.subsession_id !== lastJoined) {
-    localStorage.setItem(
-      "iref_last_joined",
-      joinProps.registrationStatus.subsession_id
-    );
+    lastJoined = joinProps.registrationStatus.subsession_id;
+    localStorage.setItem("iref_last_joined", lastJoined);
     if (
       type !== "race" ||
       (type === "race" &&
