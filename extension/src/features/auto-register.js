@@ -123,18 +123,26 @@ async function init(activate = true) {
   }
 
   persistInterval = setInterval(() => {
-    let buttons = $$("a.btn-success.disabled");
+    let buttons = $$(".chakra-table a.btn-success.disabled");
 
     if (!buttons) {
       return;
     }
 
-    buttons.forEach((button) => {
+    for (let i = 0; i < buttons.length; i++) {
+      const button = buttons[i];
+
+      const sessionProps = findProps(button);
+
+      if (sessionProps.max_team_drivers > 1) {
+        return;
+      }
+
       button.classList.add("iref-queue-btn");
       button.classList.remove("disabled", "btn-success");
       button.innerHTML = "Queue";
       button.addEventListener("click", addToQueue);
-    });
+    }
   }, 300);
 }
 
