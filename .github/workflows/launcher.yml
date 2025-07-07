@@ -46,4 +46,4 @@ jobs:
           content: |
             **Launcher v${{ github.ref_name }} released! Restart iRefined to get the latest version.**
 
-            [Or grab it here...](<https://github.com/jason-murray/irefined/releases/latest/download/iRefined-win-Setup.exe>)
+            [Or grab it here!](<https://github.com/jason-murray/irefined/releases/latest/download/iRefined-win-Setup.exe>)
