@@ -44,6 +44,6 @@ jobs:
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
           content: |
-            **Launcher v${{ github.ref_name }} released! Restart iRefined to get the latest version.**
+            **Launcher v${{ github.ref_name }} released! Right click iRefined and check updates to get the latest version.**
 
             [Or grab it here!](<https://github.com/jason-murray/irefined/releases/latest/download/iRefined-win-Setup.exe>)
