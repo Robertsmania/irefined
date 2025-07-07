@@ -34,7 +34,7 @@
 ## Planned
 
 :black_circle: Hide iRating everywhere.  
-:black_circle: Play notification sound when Race session is available.
+:black_circle: Play notification sound when Race session is available.  
 :black_circle: One click withdraw.  
 :black_circle: Sort registrations by iRating (Go racing & sim loading screen).  
 
@@ -44,7 +44,7 @@ Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?
 
 1. Download the [installer](https://github.com/jason-murray/irefined/releases/latest/download/iRefined-win-Setup.exe) and run it.
 2. The installer will launch iRefined automatically when it's finished, it runs as a tray app. You will also have a shortcut to iRefined on the desktop and in the start menu.
-3. iRefined will load the extension as long as it is running in the system tray (right click to add it to start up!).
+3. iRefined will load the extension as long as it is running in the system tray.
 4. Once the UI has launched you'll find the iRefined queue & log bar at the bottom of the screen, and the settings button (rocket) in the top right.
 5. Many of the features are disabled to start with, open the settings to turn them on.
 
