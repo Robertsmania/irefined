@@ -169,7 +169,7 @@ async function init(activate = true) {
 
       const sessionProps = findProps(button);
 
-      if (sessionProps.max_team_drivers > 1) {
+      if (sessionProps.session.max_team_drivers > 1) {
         break;
       }
 
