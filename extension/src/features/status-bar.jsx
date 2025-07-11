@@ -1,5 +1,6 @@
 import { getFeatureID } from "../helpers/feature-helpers.js";
 import features from "../feature-manager.js";
+import { activateQueueItem } from "./auto-register.js";
 import { $$ } from "select-dom";
 import React from "dom-chef";
 import "./status-bar.css";
@@ -51,6 +52,10 @@ setInterval(() => {
   queueItemsContainer.innerHTML = "";
 
   if (window.watchQueue && window.watchQueue.length > 0) {
+    window.watchQueue.forEach((item, index) => {
+      item.originalIndex = index;
+    });
+
     const sortedQueue = [...window.watchQueue].sort(
       (a, b) => new Date(a.start_time) - new Date(b.start_time)
     );
@@ -61,14 +66,13 @@ setInterval(() => {
       switch (item.status) {
         case "found":
           tooltipText =
-            "Race session found, you will be registered 5 minutes before the start time.";
+            "Race session found, you will be registered 5 minutes before the start time. Click to register now.";
           break;
         case "registering":
           tooltipText = "Registering, this can take up to 30 seconds.";
           break;
         case "queued":
-          tooltipText =
-            "Queued, the race session will be stored when iRacing makes it available.";
+          tooltipText = "Searching for race session.";
           break;
         default:
           tooltipText = "";
@@ -79,6 +83,7 @@ setInterval(() => {
           <span
             className={`iref-queue-status ${item.status}`}
             title={tooltipText}
+            onClick={() => activateQueueItem(item.originalIndex)}
           ></span>
           {item.season_name} - {formatCountdown(item.start_time)}
           <button

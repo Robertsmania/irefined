@@ -76,6 +76,7 @@
 
     &.found {
       background-color: #005db4;
+      cursor: pointer;
     }
 
     &.registering {

@@ -36,36 +36,44 @@ function checkSession(session, queueItem) {
   }
 }
 
+export function activateQueueItem(queueIndex) {
+  const queueItem = watchQueue[queueIndex];
+
+  if (queueItem.status !== "found") {
+    return;
+  }
+
+  queueItem.status = "registering";
+
+  log(`📝 Registering for series ${queueItem.season_name} in 10 seconds...`);
+
+  ws.withdraw();
+
+  setTimeout(() => {
+    watchQueue = watchQueue.filter(
+      (item) => item.start_time !== queueItem.start_time
+    );
+
+    ws.register(
+      queueItem.season_name,
+      queueItem.car_id,
+      queueItem.car_class_id,
+      queueItem.session_id
+    );
+  }, 5000);
+}
+
 setInterval(() => {
   if (watchQueue.length < 1) {
     return;
   }
 
-  watchQueue.forEach((queueItem) => {
+  watchQueue.forEach((queueItem, queueIndex) => {
     const startTime = new Date(queueItem.start_time);
     const now = new Date();
     const timeDiff = startTime - now;
     if (timeDiff <= 5 * 60 * 1000 && queueItem.status === "found") {
-      queueItem.status = "registering";
-
-      log(
-        `📝 Registering for series ${queueItem.season_name} in 10 seconds...`
-      );
-
-      ws.withdraw();
-
-      setTimeout(() => {
-        watchQueue = watchQueue.filter(
-          (item) => item.start_time !== queueItem.start_time
-        );
-
-        ws.register(
-          queueItem.season_name,
-          queueItem.car_id,
-          queueItem.car_class_id,
-          queueItem.session_id
-        );
-      }, 5000);
+      activateQueueItem(queueIndex);
     }
   });
 }, 1000);
