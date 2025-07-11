@@ -6,7 +6,8 @@
 }
 
 .iref-no-sidebars.iref-settings-panel {
-  .chakra-button[aria-label="Cart"] {
+  .chakra-button[aria-label="Cart"],
+  .chakra-button[aria-label="Cart"] + div[data-role="count"] {
     margin-right: 28px;
   }
 }
