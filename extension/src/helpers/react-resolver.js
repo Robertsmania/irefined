@@ -32,3 +32,5 @@ export function findState(el, parent = 0) {
 export function findProps(el, parent = 0) {
   return findReact(el, parent).props;
 }
+
+window.findReact = findReact;
