@@ -36,7 +36,7 @@
 :black_circle: Hide iRating everywhere.  
 :black_circle: Play notification sound when Race session is available.  
 :black_circle: One click withdraw.  
-:black_circle: Sort registrations by iRating (Go racing & sim loading screen).  
+:black_circle: Sort registrations by iRating (Go racing & sim loading screen).
 
 Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?template=feature_request.md)?
 
@@ -52,9 +52,6 @@ Why not [suggest a feature](https://github.com/jason-murray/irefined/issues/new?
 > Make sure iRefined is running before you open the iRacing UI! You can add it to Windows start-up by right clicking the tray icon and choosing this option.
 
 ## Common Issues
-
-_Opening the settings sometimes shows the latest announcements screen._  
-This can usually be sorted by closing the pop up window and clicking the settings button again.
 
 _Feature x isn't working properly._  
 Because the iRacing UI is essentially a website loaded from the internet, iRacing often roll out changes silently. This can lead to some features breaking without notice.
