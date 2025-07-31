@@ -5,6 +5,7 @@ import json
 import os
 import sys
 import threading
+from time import sleep
 from tkinter import filedialog, messagebox
 import tkinter
 import webbrowser
@@ -177,6 +178,7 @@ async def run_js_from_file(ws_url, js_path):
 def monitor_websocket():
 
     while True:
+        sleep(1)
         ws_url = get_websocket_url()
         if not ws_url:
             continue
