@@ -69,12 +69,24 @@ def create_startup_shortcut():
 
 def load_config():
     config = configparser.ConfigParser()
+    valid_config = False
+    config_retry = False
 
-    if path.exists(CONFIG_INI_FILE):
-        config.read(CONFIG_INI_FILE)
-    else:
-        config = create_default_config()
-        create_startup_shortcut()
+    while not valid_config:
+        if path.exists(CONFIG_INI_FILE) and not config_retry:
+            config.read(CONFIG_INI_FILE)
+        else:
+            config = create_default_config()
+            create_startup_shortcut()
+
+        if path.exists(
+            path.join(config.get("Config", "IRACING_PATH"), "ui", "iRacingUI.exe")
+        ):
+            print("[INFO] Found iRacing installation.")
+            valid_config = True
+        else:
+            print("[ERROR] iRacing installation not found.")
+            config_retry = True
 
     return config
 
@@ -85,7 +97,7 @@ def save_config(config):
 
 
 def set_iracing_install():
-    if path.exists("C:\\Program Files (x86)\\iRacing\\"):
+    if path.exists("C:\\Program Files (x86)\\iRacing\\ui\\iRacingUI.exe"):
         return "C:\\Program Files (x86)\\iRacing\\"
 
     messagebox.showinfo(
