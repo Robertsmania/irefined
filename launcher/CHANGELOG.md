@@ -1,5 +1,10 @@
 # Changelog
 
+## [v1.5.3]
+
+- Better iRacing path detection and config verification.
+- Fix for CPU hogging that some users experienced.
+
 ## [v1.5.2]
 
 - Switched to applying persistent config for the CDP port.
