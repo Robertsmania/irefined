@@ -245,7 +245,7 @@ def maybe_create_local_json():
 def main():
     check_update()
     maybe_create_local_json()
-    print("[INFO] iRefined ready")
+    print("[INFO] iRefined ready - TEST VERSION WITH VOICE ATTACK CLIENT")
     threading.Thread(target=monitor_websocket, daemon=True).start()
     icon.run()
 

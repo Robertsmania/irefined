@@ -4,6 +4,8 @@ import observe from "./helpers/dom-observer.js";
 let registeredFeatures = [];
 
 async function add(id, observer, selector, bodyClass, callback = null) {
+  console.log(`🔧 Feature manager: Adding feature "${id}"`);
+  
   /* Registering the feature push all args */
   registeredFeatures.push({ id, observer, selector, bodyClass, callback });
 
@@ -16,12 +18,13 @@ async function add(id, observer, selector, bodyClass, callback = null) {
   if (
     (options && options[id] === true) ||
     id === "settings-panel" ||
-    id === "status-bar"
+    id === "status-bar" ||
+    id === "voice-attack_client"
   ) {
-    //log(`✅ Enabled feature: ${id}`);
+    console.log(`✅ Feature manager: Enabled feature "${id}"`);
     enabled = true;
   } else {
-    //log(`❌ Disabled feature: ${id}`);
+    console.log(`❌ Feature manager: Disabled feature "${id}"`);
   }
 
   if (observer) {

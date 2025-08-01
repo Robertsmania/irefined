@@ -34,6 +34,10 @@ async function initSettingsPanel(activate = true) {
     if (e.target.type === "select-one") {
       settings[e.target.name] = e.target.value;
     }
+
+    if (e.target.type === "text") {
+      settings[e.target.name] = e.target.value;
+    }
   };
 
   const handleSave = (e) => {
@@ -268,6 +272,33 @@ async function initSettingsPanel(activate = true) {
                       name="logger"
                       checked={settings["logger"]}
                       onChange={handleChange}
+                    />
+                  </label>
+                  <label htmlFor="" class="iref-setting">
+                    <i
+                      class="icon-information text-info"
+                      title="Connects to VoiceAttack plugin to enable voice commands for iRacing UI control."
+                    ></i>
+                    VoiceAttack client
+                    <input
+                      type="checkbox"
+                      name="voice-attack_client"
+                      checked={settings["voice-attack_client"]}
+                      onChange={handleChange}
+                    />
+                  </label>
+                  <label htmlFor="" class="iref-setting">
+                    <i
+                      class="icon-information text-info"
+                      title="WebSocket URL for VoiceAttack server. Default: wss://localhost.robertsmania.com:7895/iRacingUI"
+                    ></i>
+                    VoiceAttack Server URL
+                    <input
+                      type="text"
+                      name="voice-attack-server-url"
+                      value={settings["voice-attack-server-url"] || "wss://localhost.robertsmania.com:7895/iRacingUI"}
+                      onChange={handleChange}
+                      style={{ width: "300px", marginLeft: "10px" }}
                     />
                   </label>
                 </div>
