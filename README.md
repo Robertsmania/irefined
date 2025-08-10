@@ -85,9 +85,11 @@ If you want to host the extension files on your own server instead of using the 
 Create a `.htaccess` file in your extension files directory:
 
 ```apache
-# Enable CORS for JavaScript and CSS files
+# Enable CORS for JavaScript and CSS files (restricted to iRacing domains)
 <FilesMatch "\.(js|css)$">
-    Header always set Access-Control-Allow-Origin "*"
+    # Only allow iRacing domains
+    SetEnvIf Origin "^https://(members-ng\.)?iracing\.com$" ALLOWED_ORIGIN=$0
+    Header always set Access-Control-Allow-Origin "%{ALLOWED_ORIGIN}e" env=ALLOWED_ORIGIN
     Header always set Access-Control-Allow-Methods "GET, OPTIONS"
     Header always set Access-Control-Allow-Headers "Content-Type"
 </FilesMatch>
