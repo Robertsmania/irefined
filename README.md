@@ -75,3 +75,39 @@ WIP
    ```
 
 The resulting installer will be in the `release` folder.
+
+### Self-Hosting Extension Files
+
+If you want to host the extension files on your own server instead of using the default localhost URLs, you'll need to configure CORS headers to allow the iRacing website to access your files.
+
+#### Apache Configuration
+
+Create a `.htaccess` file in your extension files directory:
+
+```apache
+# Enable CORS for JavaScript and CSS files
+<FilesMatch "\.(js|css)$">
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type"
+</FilesMatch>
+
+# Handle preflight OPTIONS requests
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ $1 [R=200,L]
+</IfModule>
+```
+
+#### Update bootstrap.js
+
+Modify the URLs in `launcher/bootstrap.js` to point to your server:
+
+```javascript
+// Change from localhost URLs to your server
+link.href = "https://yourdomain.com/irefined/extension.css?" + new Date().getTime();
+script.src = "https://yourdomain.com/irefined/main.js?" + new Date().getTime();
+```
+
+**Note**: Make sure to enable the `mod_headers` Apache module if it's not already enabled.
