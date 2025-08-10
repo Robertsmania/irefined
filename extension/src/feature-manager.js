@@ -18,8 +18,7 @@ async function add(id, observer, selector, bodyClass, callback = null) {
   if (
     (options && options[id] === true) ||
     id === "settings-panel" ||
-    id === "status-bar" ||
-    id === "voice-attack_client"
+    id === "status-bar"
   ) {
     console.log(`✅ Feature manager: Enabled feature "${id}"`);
     enabled = true;

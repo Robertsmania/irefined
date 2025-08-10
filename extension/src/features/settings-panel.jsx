@@ -301,6 +301,48 @@ async function initSettingsPanel(activate = true) {
                       style={{ width: "300px", marginLeft: "10px" }}
                     />
                   </label>
+                  <label htmlFor="" class="iref-setting">
+                    <i
+                      class="icon-information text-info"
+                      title="Automatically attempt to spot for a designated friend when available."
+                    ></i>
+                    Auto spot friend
+                    <input
+                      type="checkbox"
+                      name="auto-spot-friend"
+                      checked={settings["auto-spot-friend"]}
+                      onChange={handleChange}
+                    />
+                  </label>
+                  <label htmlFor="" class="iref-setting">
+                    <i
+                      class="icon-information text-info"
+                      title="Friend's display name as shown in friends list"
+                    ></i>
+                    Spot friend name
+                    <input
+                      type="text"
+                      name="auto-spot-friend-name"
+                      value={settings["auto-spot-friend-name"] || ""}
+                      onChange={handleChange}
+                      style={{ width: "300px", marginLeft: "10px" }}
+                    />
+                  </label>
+                  <label htmlFor="" class="iref-setting">
+                    <i
+                      class="icon-information text-info"
+                      title="How often to check for spot opportunities (in seconds)"
+                    ></i>
+                    Check every
+                    <input
+                      type="number"
+                      name="auto-spot-friend-interval"
+                      value={settings["auto-spot-friend-interval"] || 30}
+                      onChange={handleChange}
+                      style={{ width: "80px", marginLeft: "10px" }}
+                    />
+                    seconds
+                  </label>
                 </div>
               </div>
             </div>

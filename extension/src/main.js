@@ -16,3 +16,4 @@ import "./features/auto-join.js";
 import "./features/auto-forfeit.js";
 import "./features/auto-register.js";
 import "./features/voice-attack_client.js";
+import "./features/auto-spot-friend.js";

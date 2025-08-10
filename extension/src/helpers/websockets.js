@@ -36,6 +36,9 @@ function initWS() {
 
   authSocket.on("connect", () => {
     log("⚡ Connected to iRacing");
+    
+    // Dispatch custom event for other features to listen to
+    window.dispatchEvent(new CustomEvent('irefined-racing-connected'));
   });
 
   authSocket.on("disconnect", () => {
