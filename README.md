@@ -63,4 +63,15 @@ WIP
 
 ### Build Launcher
 
-`pipenv run cxfreeze build --target-dir=dist`
+1. Build the executable:
+   ```bash
+   pipenv run cxfreeze build --target-dir=dist
+   ```
+
+2. Create the installer:
+   ```bash
+   dotnet tool install -g vpk
+   vpk pack -u iRefined -v 9.9.9 -p .\dist -o .\release --noPortable --icon icon.ico
+   ```
+
+The resulting installer will be in the `release` folder.
