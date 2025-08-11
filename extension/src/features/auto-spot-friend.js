@@ -6,6 +6,8 @@ import { findProps } from "../helpers/react-resolver.js";
 let checkInterval = null;
 let isIRacingConnected = false;
 let settingsChangeListener = null;
+let currentInterval = null; // Track current interval to prevent unnecessary restarts
+let isMonitoring = false; // Flag to prevent multiple monitoring instances
 
 // Configuration
 const FRIENDS_LIST_SELECTOR = "#friends-wrapper";
@@ -43,6 +45,12 @@ async function init(activate = true) {
     return;
   }
 
+  // Prevent multiple initializations
+  if (isMonitoring) {
+    log("🔧 Auto-spot friend already initialized and monitoring - skipping duplicate init");
+    return;
+  }
+
   log("👀 Auto-spot friend feature initialized");
   setupIRacingConnectionListener();
   setupSettingsChangeListener();
@@ -60,13 +68,19 @@ function setupSettingsChangeListener() {
       try {
         const newSettings = JSON.parse(event.newValue || '{}');
         const isEnabled = newSettings['auto-spot-friend'];
+        const newInterval = (newSettings['auto-spot-friend-interval'] || 30) * 1000;
         
         if (!isEnabled && isIRacingConnected) {
           log("🔧 Auto-spot friend disabled by user - stopping monitoring");
           stopMonitoring();
-        } else if (isEnabled && isIRacingConnected && !checkInterval) {
-          log("🔧 Auto-spot friend enabled by user - starting monitoring");
-          startMonitoring();
+        } else if (isEnabled && isIRacingConnected) {
+          // Only restart if not already monitoring or if interval changed
+          if (!isMonitoring || currentInterval !== newInterval) {
+            log("🔧 Auto-spot friend settings changed - restarting monitoring");
+            startMonitoring();
+          } else {
+            log("🔧 Auto-spot friend enabled but no changes needed");
+          }
         }
       } catch (error) {
         log(`⚠️ Error processing settings change: ${error.message}`);
@@ -94,8 +108,22 @@ function startMonitoring() {
   const intervalSeconds = settings['auto-spot-friend-interval'] || 30;
   const intervalMs = intervalSeconds * 1000;
   
+  // Check if we're already monitoring at the same interval
+  if (isMonitoring && currentInterval === intervalMs) {
+    log(`🔍 Already monitoring at ${intervalSeconds}s interval - no restart needed`);
+    return;
+  }
+  
+  // Stop existing monitoring before starting new
+  if (isMonitoring) {
+    log(`🔧 Restarting monitoring with new interval: ${intervalSeconds}s`);
+    stopMonitoring();
+  }
+  
   // Start periodic checking
   checkInterval = setInterval(checkFriendStatus, intervalMs);
+  currentInterval = intervalMs;
+  isMonitoring = true;
   
   log(`🔍 Started monitoring friend status for auto-spot every ${intervalSeconds} seconds`);
   
@@ -127,6 +155,9 @@ function stopMonitoring() {
     clearInterval(checkInterval);
     checkInterval = null;
   }
+  
+  currentInterval = null;
+  isMonitoring = false;
   
   log("⏹️ Stopped monitoring friend status");
 }
