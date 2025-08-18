@@ -98,15 +98,17 @@ function register(
   car_id,
   car_class_id,
   session_id,
-  subsession_id = null
+  subsession_id = null,
+  register_as = "driver",
+  spot_for_custid = null
 ) {
-  log(`📝 Registering for ${session_name}`);
+  log(`📝 Registering for ${session_name} as ${register_as}${spot_for_custid ? ` for customer ${spot_for_custid}` : ''}`);
 
   const data = {
     service: "registration",
     method: "register",
     args: {
-      register_as: "driver",
+      register_as: register_as,
       car_id: car_id,
       car_class_id: car_class_id,
       session_id: session_id,
@@ -115,6 +117,11 @@ function register(
 
   if (subsession_id) {
     data.args.subsession_id = subsession_id;
+  }
+
+  // Add spot_for_custid when registering as crew/spotter
+  if (spot_for_custid && (register_as === "crew" || register_as === "spotter")) {
+    data.args.spot_for_custid = spot_for_custid;
   }
 
   send("data_services", data);
@@ -126,5 +133,8 @@ const ws = {
   withdraw,
   callbacks,
 };
+
+// Make websocket helper available globally for testing
+window.ws = ws;
 
 export default ws;
