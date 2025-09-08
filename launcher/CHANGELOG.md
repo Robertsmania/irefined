@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.5.4]
+
+- Fix update check reporting an error on Windows start-up (or no internet).
+- Tray right click can now Reload the extension manually, useful if it doesm't show up. Thanks to Simber for the inspiration.
+- Include launcher version in tray menu.
+
 ## [v1.5.3]
 
 - Better iRacing path detection and config verification.
