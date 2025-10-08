@@ -208,19 +208,23 @@ def toggle_startup(icon, item):
 
 def check_update():
     if getattr(sys, "frozen", False):
-        manager = velopack.UpdateManager(
-            "https://github.com/jason-murray/irefined/releases/latest/download"
-        )
+        try:
+            manager = velopack.UpdateManager(
+                "https://github.com/jason-murray/irefined/releases/latest/download"
+            )
 
-        update_info = manager.check_for_updates()
-        if not update_info:
-            print("[INFO] No updates available")
-            return
+            update_info = manager.check_for_updates()
+            if not update_info:
+                print("[INFO] No updates available")
+                return
 
-        # Download and apply updates
-        print("[INFO] Update available! Applying...")
-        manager.download_updates(update_info)
-        manager.apply_updates_and_restart(update_info)
+            # Download and apply updates
+            print("[INFO] Update available! Applying...")
+            manager.download_updates(update_info)
+            manager.apply_updates_and_restart(update_info)
+
+        except Exception as e:
+            print(f"[ERROR] Update check failed: {e}")
 
 
 def maybe_create_local_json():
@@ -256,11 +260,13 @@ if __name__ == "__main__":
 
     image = Image.open(find_data_file("icon.ico"))
     menu = (
+        pystray.MenuItem("iRefined Launcher v1.5.4", None, enabled=False),
         pystray.MenuItem("Discord", open_discord),
         pystray.Menu.SEPARATOR,
         pystray.MenuItem(
             "Run at Startup", toggle_startup, checked=lambda item: is_startup_enabled()
         ),
+        pystray.MenuItem("Reload", lambda: seen_socket_urls.clear()),
         pystray.MenuItem("Check for Updates", check_update),
         pystray.MenuItem("Quit", on_quit),
     )

@@ -387,7 +387,7 @@ async function initSettingsPanel(activate = true) {
   );
 
   const handleClick = (e) => {
-    $("#menubar-right > span:nth-child(3) button").click();
+    $("#menubar-right > span:nth-child(4) button").click();
 
     let waitForSettings = setInterval(() => {
       if ($("#update-content-modal-modal-dialog")) {
